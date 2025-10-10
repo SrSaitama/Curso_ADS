@@ -1,0 +1,20 @@
+h1{color:blue; font-size: 12px;}
+
+h1.supertitulo{color:blue; font-size: 12px;}
+
+.supertitulo{font-size: 50px}
+        
+#tituloprincipal{font-size: 90px; color: tomato;}
+
+p{background-color: chartreuse;}
+p{background-color: darkmagenta;}
+
+.minhaLista li{
+    color: darksalmon;
+}
+
+body{
+    background-color: cyan;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
