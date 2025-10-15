@@ -36,51 +36,51 @@ def escolha_tipo():
 
 
 def qtd_toras():
-    desconto = 0
     while True:
-        num_toras = input("Entre com a quantidade de toras (m³) desejado: ").upper().strip()
-        if (num_toras <= 0 or num_toras > 2000):
-            print("Não aceitamos pedidos com essa quantidade de toras!\n"
-            "Por favor, entre com a quantidade novamente.\n")
-            continue
-        elif(num_toras < 100):
-            desconto == (0/100)
-        elif(num_toras >= 100 and num_toras < 500):
-            desconto == (4/100)
-        elif(num_toras >= 500 and num_toras < 1000):
-            desconto == (9/100)
-        elif(num_toras >= 1000 and num_toras < 2000):
-            desconto == (16/100)
-        else:
-            print("Informe um valor válido!")
-            continue
+        try:
+            num_toras = float(input("Entre com a quantidade de toras (m³) desejado: "))
+            
+            if (num_toras > 2000):
+                print("Não aceitamos pedidos com essa quantidade de toras!\n"
+                "Por favor, entre com a quantidade novamente.\n")
+                continue
+            elif(num_toras < 0):
+                print("Informe um valor positivo!")
+                continue
 
-        res = print(f"a quantidade de toras é: {num_toras:.2f}"
-                    "o valor do desconto é: {desconto:.2f}\n")
-        break
+            if(num_toras < 100):
+                desconto = (0/100)
+            elif(num_toras < 500):
+                desconto = (4/100)
+            elif(num_toras < 1000):
+                desconto = (9/100)
+            else:
+                desconto = (16/100)
 
-    return res
+            return num_toras, desconto
+
+        except ValueError:
+            print("Digite um valor numerico!")
+
+
 
 def transporte():
-    valor_transporte
     while True:
         tipo_transporte = input("Entre com o Tipo de Madeira desejado\n"
         "1 - Transporte Rodoviário  - R$ 1000.00\n"
         "2 - Transporte Ferroviário - R$ 2000.00\n"
         "3 - Transporte Hidroviário - R$ 2500.00\n>>").upper().strip()
-        
-        if tipo_transporte not in ("1", "2", "3"):
-            print("Escolha inválida!\n")
-            continue
-        elif(tipo_transporte == "1"):
+             
+        if(tipo_transporte == "1"):
             valor_transporte = 1000
         elif(tipo_transporte == "2"):
             valor_transporte = 2000
-        else:
+        elif(tipo_transporte == "3"):
             valor_transporte = 2500
-
-
-        
+        else:
+            print("Escolha inválida!\n")
+            continue
+      
         total = ((tipoMadeira * num_toras)*(1-desconto)) + tipo_transporte
 
         res = print(f"{total:.2f}")
