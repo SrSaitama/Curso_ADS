@@ -1,12 +1,14 @@
 print("Bem vindo a Madeireira do Lenhador Bruno Eliakim\n")
 
-global valor_tora 
-global tipoMadeira
-global desconto
-global num_toras
+valor_tora = None
+tipoMadeira = None
+desconto = None
+num_toras = None
 
 
 def escolha_tipo():
+    global tipoMadeira
+    global valor_tora
     while True:
         tipoMadeira = input("Entre com o Tipo de Madeira desejado\n"
         "PIN - Tora de Pinheiro\n"
@@ -28,17 +30,17 @@ def escolha_tipo():
                 valor_tora = 210.10
             else:
                 valor_tora = 220.70
-        res = print(f"O valor por m³ é: {valor_tora:.2f}\n")
         break
-
-    return res
+    return 
 
 
 
 def qtd_toras():
+    global num_toras
+    global desconto
     while True:
         try:
-            num_toras = float(input("Entre com a quantidade de toras (m³) desejado: "))
+            num_toras = int(input("Entre com a quantidade de toras (m³) desejado: "))
             
             if (num_toras > 2000):
                 print("Não aceitamos pedidos com essa quantidade de toras!\n"
@@ -66,7 +68,7 @@ def qtd_toras():
 
 def transporte():
     while True:
-        tipo_transporte = input("Entre com o Tipo de Madeira desejado\n"
+        tipo_transporte = input("\nEntre com o Tipo de Transporte desejado\n"
         "1 - Transporte Rodoviário  - R$ 1000.00\n"
         "2 - Transporte Ferroviário - R$ 2000.00\n"
         "3 - Transporte Hidroviário - R$ 2500.00\n>>").upper().strip()
@@ -81,7 +83,7 @@ def transporte():
             print("Escolha inválida!\n")
             continue
       
-        total = ((tipoMadeira * num_toras)*(1-desconto)) + tipo_transporte
+        total = ((valor_tora * num_toras)*(1-desconto)) + valor_transporte
 
         res = print(f"{total:.2f}")
         break
