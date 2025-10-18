@@ -8,7 +8,7 @@ def cadastrar_contatos(id):
 
     print("\n","-"*50)
     print("-"*15, " MENU CADASTRAR CONTATO ", "-"*15)
-    id = input("Id do Contato: ")
+    id = int(input("Id do Contato: "))
     nome = input("Por favor, entre com o nome do Contato: ")
     atividade = input("Por favor entre com a Atividade do contato: ")
     telefone = input("Por favor entre com o telefone do Contato: ")
