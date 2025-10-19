@@ -48,7 +48,7 @@ def cadastrar_contatos(id):
 
     contato = {"id": id, "nome": nome, "atividade": atividade, "telefone": telefone}
 
-    lista_contatos.append(contato.copy)
+    lista_contatos.append(contato.copy())
 
 
 def consultar_contatos():
@@ -58,10 +58,9 @@ def consultar_contatos():
         consultar = input(">> ")
 
         if consultar == "1":
-            draw_lines(15)
             for contato in lista_contatos:
                 print(
-                    f"Id: {contato['id']}  \nNome: {contato['nome']}  \nAtividade: {contato['atividade']}  \nTelefone: {contato['telefone']}\n\n"
+                    f"\nId: {contato['id']}  \nNome: {contato['nome']}  \nAtividade: {contato['atividade']}  \nTelefone: {contato['telefone']}\n\n"
                 )
             if not lista_contatos:
                 print("Nenhum contato cadastrado.")
@@ -89,10 +88,9 @@ def consultar_contatos():
                 c for c in lista_contatos if c["atividade"].lower() == atividade_busca
             ]
             if encontrados:
-                # print(f"\n--- Contatos com atividade '{atividade_busca}' ---")
                 for c in encontrados:
                     print(
-                        f"Id: {c['id']} \nNome: {c['nome']} \nTelefone: {c['telefone']}\n\n"
+                        f"\nId: {c['id']} \nNome: {c['nome']} \nTelefone: {c['telefone']}\n\n"
                     )
             else:
                 print("Nenhum contato encontrado com essa atividade.")
@@ -131,8 +129,8 @@ def run():
 
         match opcao:
             case "1":
-                id_global += 1
                 cadastrar_contatos(id_global)
+                id_global += 1               
             case "2":
                 consultar_contatos()
             case "3":
