@@ -1,5 +1,7 @@
 lista_contatos = []
 
+state = {"opcao": "0", "messageSuccess": "", "messageError": ""}
+
 
 def draw_lines(n):
     lines = "-" * n
@@ -20,6 +22,19 @@ messages = {
         draw_lines(50),
         f"{draw_lines(15)} MENU CADASTRAR CONTATO {draw_lines(15)}",
     ],
+    "consultar": [
+        draw_lines(50),
+        f"{draw_lines(15)} MENU CONSULTAR CONTATOS {draw_lines(15)}",
+        "Qual opção deseja: ",
+        "1 - Consultar Todos",
+        "2 - Consultar por Id",
+        "3 - Consultar por Setor",
+        "4 - Retomar ao menu",
+    ],
+    "remover": [
+        draw_lines(50),
+        f"{draw_lines(15)} MENU REMOVER CONTATO {draw_lines(15)}",
+    ],
 }
 
 
@@ -29,8 +44,6 @@ def display_messages(*args):
 
 
 def cadastrar_contatos(id):
-    display_messages(f"Seu Id: {id}", *messages["register"])
-
     nome = input("Por favor, entre com o nome do Contato: ")
     atividade = input("Por favor entre com a Atividade do contato: ")
     telefone = input("Por favor entre com o telefone do Contato: ")
@@ -41,114 +54,124 @@ def cadastrar_contatos(id):
 
 
 def consultar_contatos():
+    consultar = input(">> ")
 
-    while True:
-        print("\n", "-" * 54)
-        print("-" * 15, " MENU CONSULTAR CONTATOS ", "-" * 15)
-        print(
-            "Qual opção deseja: \n"
-            "1 - Consultar Todos\n"
-            "2 - Consultar por Id\n"
-            "3 - Consultar por Setor\n"
-            "4 - Retomar ao menu\n"
-        )
+    if consultar == "1":
+        draw_lines(50)
+        for contato in lista_contatos:
+            display_messages(
+                f"Id: {contato['id']}  \nNome: {contato['nome']}  \nAtividade: {contato['atividade']}  \nTelefone: {contato['telefone']}\n\n"
+            )
+        if not lista_contatos:
+            state["messageError"] = "Nenhum contato cadastrado."
+            return None
 
-        consultar = input(">> ")
-
-        if consultar == "1":
-            print("-" * 25)
+    elif consultar == "2":
+        try:
+            id_busca = int(input("Digite o Id do contato: "))
+            encontrado = False
             for contato in lista_contatos:
-                print(
-                    f"Id: {contato['id']}  \nNome: {contato['nome']}  \nAtividade: {contato['atividade']}  \nTelefone: {contato['telefone']}\n\n"
-                )
-            if not lista_contatos:
-                print("Nenhum contato cadastrado.")
-
-        elif consultar == "2":
-            try:
-                id_busca = int(input("Digite o Id do contato: "))
-                encontrado = False
-                for contato in lista_contatos:
-                    if contato["id"] == id_busca:
-                        print(
-                            f"\nContato encontrado: Id: {contato['id']} \nNome: {contato['nome']} \nAtividade: {contato['atividade']} \nTelefone: {contato['telefone']}\n\n"
-                        )
-                        encontrado = True
-                        break
-                if not encontrado:
-                    print("Id não encontrado.")
-
-            except ValueError:
-                print("Digite um número válido para o Id.")
-
-        elif consultar == "3":
-            atividade_busca = input("Digite a atividade: ").strip().lower()
-            encontrados = [
-                c for c in lista_contatos if c["atividade"].lower() == atividade_busca
-            ]
-            if encontrados:
-                # print(f"\n--- Contatos com atividade '{atividade_busca}' ---")
-                for c in encontrados:
-                    print(
-                        f"Id: {c['id']} \nNome: {c['nome']} \nTelefone: {c['telefone']}\n\n"
+                if contato["id"] == id_busca:
+                    display_messages(
+                        f"\nContato encontrado: Id: {contato['id']} \nNome: {contato['nome']} \nAtividade: {contato['atividade']} \nTelefone: {contato['telefone']}\n\n"
                     )
-            else:
-                print("Nenhum contato encontrado com essa atividade.")
+                    encontrado = True
+            if not encontrado:
+                state["messageError"] = "Id não encontrado."
+                return None
 
-        elif consultar == "4":
-            print("Retornando ao menu principal...\n")
-            return
+        except ValueError:
+            state["messageError"] = "Digite um id valido"
+            return None
 
+    elif consultar == "3":
+        atividade_busca = input("Digite a atividade: ").strip().lower()
+        encontrados = [
+            c for c in lista_contatos if c["atividade"].lower() == atividade_busca
+        ]
+        if encontrados:
+            # print(f"\n--- Contatos com atividade '{atividade_busca}' ---")
+            for c in encontrados:
+                display_messages(
+                    f"Id: {c['id']} \nNome: {c['nome']} \nTelefone: {c['telefone']}\n\n"
+                )
         else:
-            print("Opção inválida! Tente novamente.")
+            state["messageError"] = "Nenhum contato encontrado com essa atividade."
+            return None
+
+    elif consultar == "4":
+        display_messages("Retornando ao menu principal...\n")
+        return True
+
+    else:
+        state["messageError"] = "Opção inválida! Tente novamente."
+        return None
 
 
 def remover_contato():
+    try:
+        id_remove = int(input("Digite o Id do contato a ser removido: "))
+        for contato in lista_contatos:
+            if contato["id"] == id_remove:
+                lista_contatos.remove(contato)
+                print(f"Contato {id_remove} removido com sucesso!\n")
+                return True
 
-    print("\n", "-" * 54)
-    print("-" * 15, " MENU REMOVER CONTATO ", "-" * 15)
+        state["messageError"] = "Id inválido, tente novamente."
+        return None
 
-    while True:
-        try:
-            id_remove = int(input("Digite o Id do contato a ser removido: "))
-            for contato in lista_contatos:
-                if contato["id"] == id_remove:
-                    lista_contatos.remove(contato)
-                    print(f"Contato {id_remove} removido com sucesso!\n")
-                    return
-            print("Id inválido, tente novamente.\n")
-
-        except ValueError:
-            print("Digite um número válido para o Id.\n")
+    except ValueError:
+        state["messageError"] = "Digite um número válido para o Id."
+        return None
 
 
 def run():
+    global state
     count_id = 0
 
     while True:
+        match state["opcao"]:
+            case "0":
+                display_messages(*messages["main"])
+                state["opcao"] = input("Ecolha uma opção: \n")
 
-        display_messages(*messages["main"])
-        opcao = input("Escolha uma opção: ")
-
-        match opcao:
+                continue
             case "1":
                 count_id += 1
+                display_messages(*messages["register"])
+
                 cadastrar_contatos(count_id)
+
+                state["opcao"] = "0"
+                continue
             case "2":
-                consultar_contatos()
+                display_messages(*messages["consultar"])
+
+                if consultar_contatos():
+                    state["opcao"] = "0"
+                else:
+                    display_messages(state["messageError"])
+                    continue
+
             case "3":
-                remover_contato()
+                display_messages(*messages["remover"])
+
+                if remover_contato():
+                    state["opcao"] = "0"
+                else:
+                    display_messages(state["messageError"])
+                    continue
+
             case "4":
-                print("Programa encerrado. Até logo!")
+                display_messages("Programa encerrado. Até logo!")
                 break
             case _:
-                print("Opção inválida! Escolha entre 1 e 4.\n")
+                display_messages("Opção inválida! Escolha entre 1 e 4.\n")
 
 
 def start():
-    print("Bem vindo a Lista de Contatos do Bruno Eliakim")
+    display_messages("Bem vindo a Lista de Contatos do Bruno Eliakim")
     run()
 
 
 start()
-
