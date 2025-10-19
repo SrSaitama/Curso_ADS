@@ -1,55 +1,78 @@
-print("Bem vindo a Lista de Contatos do Bruno Eliakim")
-
 lista_contatos = []
-id_global = 5558147
+
+
+def draw_lines(n):
+    lines = "-" * n
+    return lines
+
+
+messages = {
+    "main": [
+        "\n",
+        draw_lines(50),
+        f"{draw_lines(15)} MENU PRINCIPAL {draw_lines(15)}",
+        "1 - Cadastrar Contato",
+        "2 - Consultar Contato",
+        "3 - Remover Contato",
+        "4 - Sair",
+    ],
+    "register": [
+        draw_lines(50),
+        f"{draw_lines(15)} MENU CADASTRAR CONTATO {draw_lines(15)}",
+    ],
+}
+
+
+def display_messages(*args):
+    for arg in args:
+        print(arg)
 
 
 def cadastrar_contatos(id):
+    display_messages(f"Seu Id: {id}", *messages["register"])
 
-    print("\n","-"*50)
-    print("-"*15, " MENU CADASTRAR CONTATO ", "-"*15)
-    id = int(input("Id do Contato: "))
     nome = input("Por favor, entre com o nome do Contato: ")
     atividade = input("Por favor entre com a Atividade do contato: ")
     telefone = input("Por favor entre com o telefone do Contato: ")
 
-    contato = {
-        "id": id,
-        "nome": nome,
-        "atividade": atividade,
-        "telefone": telefone
-    }
+    contato = {"id": id, "nome": nome, "atividade": atividade, "telefone": telefone}
 
-    lista_contatos.append(contato.copy())
+    lista_contatos.append(contato)
+
 
 def consultar_contatos():
 
     while True:
-        print("\n","-"*54)
-        print("-"*15, " MENU CONSULTAR CONTATOS ", "-"*15)
-        print("Qual opção deseja: \n" 
-        "1 - Consultar Todos\n" 
-        "2 - Consultar por Id\n" 
-        "3 - Consultar por Setor\n" 
-        "4 - Retomar ao menu\n")
+        print("\n", "-" * 54)
+        print("-" * 15, " MENU CONSULTAR CONTATOS ", "-" * 15)
+        print(
+            "Qual opção deseja: \n"
+            "1 - Consultar Todos\n"
+            "2 - Consultar por Id\n"
+            "3 - Consultar por Setor\n"
+            "4 - Retomar ao menu\n"
+        )
 
         consultar = input(">> ")
 
-        if (consultar == "1"):
-            print("-"*25)
+        if consultar == "1":
+            print("-" * 25)
             for contato in lista_contatos:
-                print(f"Id: {contato['id']}  \nNome: {contato['nome']}  \nAtividade: {contato['atividade']}  \nTelefone: {contato['telefone']}\n\n")
+                print(
+                    f"Id: {contato['id']}  \nNome: {contato['nome']}  \nAtividade: {contato['atividade']}  \nTelefone: {contato['telefone']}\n\n"
+                )
             if not lista_contatos:
                 print("Nenhum contato cadastrado.")
 
-    
-        elif (consultar == "2"):
+        elif consultar == "2":
             try:
                 id_busca = int(input("Digite o Id do contato: "))
                 encontrado = False
                 for contato in lista_contatos:
                     if contato["id"] == id_busca:
-                        print(f"\nContato encontrado: Id: {contato['id']} \nNome: {contato['nome']} \nAtividade: {contato['atividade']} \nTelefone: {contato['telefone']}\n\n")
+                        print(
+                            f"\nContato encontrado: Id: {contato['id']} \nNome: {contato['nome']} \nAtividade: {contato['atividade']} \nTelefone: {contato['telefone']}\n\n"
+                        )
                         encontrado = True
                         break
                 if not encontrado:
@@ -58,21 +81,21 @@ def consultar_contatos():
             except ValueError:
                 print("Digite um número válido para o Id.")
 
-
-
-        elif (consultar == "3"):
+        elif consultar == "3":
             atividade_busca = input("Digite a atividade: ").strip().lower()
-            encontrados = [c for c in lista_contatos if c["atividade"].lower() == atividade_busca]
+            encontrados = [
+                c for c in lista_contatos if c["atividade"].lower() == atividade_busca
+            ]
             if encontrados:
-                #print(f"\n--- Contatos com atividade '{atividade_busca}' ---")
+                # print(f"\n--- Contatos com atividade '{atividade_busca}' ---")
                 for c in encontrados:
-                    print(f"Id: {c['id']} \nNome: {c['nome']} \nTelefone: {c['telefone']}\n\n")
+                    print(
+                        f"Id: {c['id']} \nNome: {c['nome']} \nTelefone: {c['telefone']}\n\n"
+                    )
             else:
                 print("Nenhum contato encontrado com essa atividade.")
 
-
-
-        elif (consultar == "4"):
+        elif consultar == "4":
             print("Retornando ao menu principal...\n")
             return
 
@@ -81,9 +104,9 @@ def consultar_contatos():
 
 
 def remover_contato():
-    
-    print("\n","-"*54)
-    print("-"*15, " MENU REMOVER CONTATO ", "-"*15)
+
+    print("\n", "-" * 54)
+    print("-" * 15, " MENU REMOVER CONTATO ", "-" * 15)
 
     while True:
         try:
@@ -99,30 +122,33 @@ def remover_contato():
             print("Digite um número válido para o Id.\n")
 
 
+def run():
+    count_id = 0
 
-while True:
-    print("\n","-"*54)
-    print("-"*15, " MENU PRINCIPAL ", "-"*15)
-    print("1 - Cadastrar Contato")
-    print("2 - Consultar Contato")
-    print("3 - Remover Contato")
-    print("4 - Sair")
+    while True:
 
-    opcao = input("Escolha uma opção: ")
+        display_messages(*messages["main"])
+        opcao = input("Escolha uma opção: ")
 
-    if opcao == "1":
-        cadastrar_contatos(id_global)
-        id_global += 1  
+        match opcao:
+            case "1":
+                count_id += 1
+                cadastrar_contatos(count_id)
+            case "2":
+                consultar_contatos()
+            case "3":
+                remover_contato()
+            case "4":
+                print("Programa encerrado. Até logo!")
+                break
+            case _:
+                print("Opção inválida! Escolha entre 1 e 4.\n")
 
-    elif opcao == "2":
-        consultar_contatos()
 
-    elif opcao == "3":
-        remover_contato()
+def start():
+    print("Bem vindo a Lista de Contatos do Bruno Eliakim")
+    run()
 
-    elif opcao == "4":
-        print("Programa encerrado. Até logo!")
-        break
 
-    else:
-        print("Opção inválida! Escolha entre 1 e 4.\n")
+start()
+
