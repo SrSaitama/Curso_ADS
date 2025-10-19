@@ -1,14 +1,12 @@
 lista_contatos = []
 
-
 def draw_lines(n):
     lines = "-" * n
     return lines
 
 
 messages = {
-    "main": [
-        "\n",
+    "Principal": [
         draw_lines(50),
         f"{draw_lines(15)} MENU PRINCIPAL {draw_lines(15)}",
         "1 - Cadastrar Contato",
@@ -16,9 +14,22 @@ messages = {
         "3 - Remover Contato",
         "4 - Sair",
     ],
-    "register": [
+    "Registrar": [
         draw_lines(50),
         f"{draw_lines(15)} MENU CADASTRAR CONTATO {draw_lines(15)}",
+    ],
+    "Consultar":[
+        draw_lines(50),
+        f"{draw_lines(15)} MENU CONSULTAR CONTATOS {draw_lines(15)}",
+            "Qual opção deseja:",
+            "1 - Consultar Todos",
+            "2 - Consultar por Id",
+            "3 - Consultar por Setor",
+            "4 - Retomar ao menu",
+    ],
+    "Remover":[
+        draw_lines(50),
+        f"{draw_lines(15)} MENU REMOVER CONTATO {draw_lines(15)}",
     ],
 }
 
@@ -29,34 +40,25 @@ def display_messages(*args):
 
 
 def cadastrar_contatos(id):
-    display_messages(f"Seu Id: {id}", *messages["register"])
-
+    display_messages(*messages["Registrar"])
+    print(f"Seu Id: {id}")
     nome = input("Por favor, entre com o nome do Contato: ")
     atividade = input("Por favor entre com a Atividade do contato: ")
     telefone = input("Por favor entre com o telefone do Contato: ")
 
     contato = {"id": id, "nome": nome, "atividade": atividade, "telefone": telefone}
 
-    lista_contatos.append(contato)
+    lista_contatos.append(contato.copy)
 
 
 def consultar_contatos():
 
     while True:
-        print("\n", "-" * 54)
-        print("-" * 15, " MENU CONSULTAR CONTATOS ", "-" * 15)
-        print(
-            "Qual opção deseja: \n"
-            "1 - Consultar Todos\n"
-            "2 - Consultar por Id\n"
-            "3 - Consultar por Setor\n"
-            "4 - Retomar ao menu\n"
-        )
-
+        display_messages(*messages["Consultar"])
         consultar = input(">> ")
 
         if consultar == "1":
-            print("-" * 25)
+            draw_lines(15)
             for contato in lista_contatos:
                 print(
                     f"Id: {contato['id']}  \nNome: {contato['nome']}  \nAtividade: {contato['atividade']}  \nTelefone: {contato['telefone']}\n\n"
@@ -105,10 +107,8 @@ def consultar_contatos():
 
 def remover_contato():
 
-    print("\n", "-" * 54)
-    print("-" * 15, " MENU REMOVER CONTATO ", "-" * 15)
-
     while True:
+        display_messages(*messages["Remover"])
         try:
             id_remove = int(input("Digite o Id do contato a ser removido: "))
             for contato in lista_contatos:
@@ -121,19 +121,18 @@ def remover_contato():
         except ValueError:
             print("Digite um número válido para o Id.\n")
 
-
 def run():
-    count_id = 0
+    id_global = 5558147
 
     while True:
 
-        display_messages(*messages["main"])
+        display_messages(*messages["Principal"])
         opcao = input("Escolha uma opção: ")
 
         match opcao:
             case "1":
-                count_id += 1
-                cadastrar_contatos(count_id)
+                id_global += 1
+                cadastrar_contatos(id_global)
             case "2":
                 consultar_contatos()
             case "3":
