@@ -1,26 +1,31 @@
+print("Bem vindo a Lista de Contatos do Bruno Eliakim")
+# Variável de controle do ID Global
+id_global = 5558147
+# Lista para armazenar contatos (cada contato será um dicionário dentro da lista)
 lista_contatos = []
 
-def draw_lines(n):
+# Função responsável por desenhar os traços dos menus.
+def desenhar_linhas(n):
     lines = "-" * n
     return lines
 
-
-messages = {
+# Função responsável pelas mensagens dos menus.
+mensagem = {
     "Principal": [
-        draw_lines(50),
-        f"{draw_lines(15)} MENU PRINCIPAL {draw_lines(15)}",
+        desenhar_linhas(50),
+        f"{desenhar_linhas(15)} MENU PRINCIPAL {desenhar_linhas(15)}",
         "1 - Cadastrar Contato",
         "2 - Consultar Contato",
         "3 - Remover Contato",
         "4 - Sair",
     ],
     "Registrar": [
-        draw_lines(50),
-        f"{draw_lines(15)} MENU CADASTRAR CONTATO {draw_lines(15)}",
+        desenhar_linhas(50),
+        f"{desenhar_linhas(15)} MENU CADASTRAR CONTATO {desenhar_linhas(15)}",
     ],
     "Consultar":[
-        draw_lines(50),
-        f"{draw_lines(15)} MENU CONSULTAR CONTATOS {draw_lines(15)}",
+        desenhar_linhas(50),
+        f"{desenhar_linhas(15)} MENU CONSULTAR CONTATOS {desenhar_linhas(15)}",
             "Qual opção deseja:",
             "1 - Consultar Todos",
             "2 - Consultar por Id",
@@ -28,33 +33,36 @@ messages = {
             "4 - Retomar ao menu",
     ],
     "Remover":[
-        draw_lines(50),
-        f"{draw_lines(15)} MENU REMOVER CONTATO {draw_lines(15)}",
+        desenhar_linhas(50),
+        f"{desenhar_linhas(15)} MENU REMOVER CONTATO {desenhar_linhas(15)}",
     ],
 }
 
-
-def display_messages(*args):
+# Função que mostra várias mensagens passadas como argumento (usada para exibir menus)
+def mostrar_mensagens(*args):
     for arg in args:
         print(arg)
 
-
+# Função de Cadastro,  Cadastra um contato com id, nome, atividade e telefone. Armazena em um dicionário e copia para lista_contatos.
 def cadastrar_contatos(id):
-    display_messages(*messages["Registrar"])
+    mostrar_mensagens(*mensagem["Registrar"])
     print(f"Seu Id: {id}")
     nome = input("Por favor, entre com o nome do Contato: ")
     atividade = input("Por favor entre com a Atividade do contato: ")
     telefone = input("Por favor entre com o telefone do Contato: ")
 
+    # Dicionário com os dados contato
     contato = {"id": id, "nome": nome, "atividade": atividade, "telefone": telefone}
 
+    # Adiciona uma cópia do dicionário à lista principal
     lista_contatos.append(contato.copy())
 
 
+# Função de Consulta dos contatos dentro da lista
 def consultar_contatos():
 
     while True:
-        display_messages(*messages["Consultar"])
+        mostrar_mensagens(*mensagem["Consultar"])
         consultar = input(">> ")
 
         if consultar == "1":
@@ -103,10 +111,11 @@ def consultar_contatos():
             print("Opção inválida! Tente novamente.")
 
 
+# Função que remove os contatos de dentro da lista
 def remover_contato():
 
     while True:
-        display_messages(*messages["Remover"])
+        mostrar_mensagens(*mensagem["Remover"])
         try:
             id_remove = int(input("Digite o Id do contato a ser removido: "))
             for contato in lista_contatos:
@@ -119,33 +128,25 @@ def remover_contato():
         except ValueError:
             print("Digite um número válido para o Id.\n")
 
-def run():
-    id_global = 5558147
 
-    while True:
+# Menu principal
+while True:
 
-        display_messages(*messages["Principal"])
-        opcao = input("Escolha uma opção: ")
+    mostrar_mensagens(*mensagem["Principal"])
+    opcao = input("Escolha uma opção: ")
 
-        match opcao:
-            case "1":
+    match opcao:
+        case "1":
                 cadastrar_contatos(id_global)
-                id_global += 1               
-            case "2":
+                id_global += 1 # incrementa +1 ao id, a cada novo cadastro             
+        case "2":
                 consultar_contatos()
-            case "3":
+        case "3":
                 remover_contato()
-            case "4":
+        case "4":
                 print("Programa encerrado. Até logo!")
                 break
-            case _:
+        case _:
                 print("Opção inválida! Escolha entre 1 e 4.\n")
 
-
-def start():
-    print("Bem vindo a Lista de Contatos do Bruno Eliakim")
-    run()
-
-
-start()
 

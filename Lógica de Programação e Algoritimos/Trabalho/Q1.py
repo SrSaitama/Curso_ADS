@@ -1,12 +1,13 @@
 
 print('Bem vindo ao Sistema do Bruno Eliakim')
-      
+
+#Inputs que receberam os dados
 valorBase = float(input("informe o valor Base do Plano: R$ "))
 idade = int(input('Informe a idade do Cliente: '))
 
 valorMensal = 0.0
 
-
+#Condicionais que iram verificar a idade e fazer o calculo do plano
 if (idade>=0 and idade< 19):
     valorMensal = valorBase*(100/100)
     print(f'O valor mensal do plano é de: R$ {valorMensal:.2f}');
