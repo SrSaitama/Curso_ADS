@@ -1,14 +1,10 @@
 print("Bem vindo a Madeireira do Lenhador Bruno Eliakim\n")
 
-valor_tora = None
-tipoMadeira = None
-desconto = None
-num_toras = None
-
-
+# Função: escolha_tipo()
 def escolha_tipo():
     global tipoMadeira
-    global valor_tora
+
+#     Pergunta o tipo de madeira desejado e retorna o valor da tora. Repete se o usuário digitar uma opção inválida.
     while True:
         tipoMadeira = input("Entre com o Tipo de Madeira desejado\n"
         "PIN - Tora de Pinheiro\n"
@@ -21,24 +17,23 @@ def escolha_tipo():
             continue
         else:
             if(tipoMadeira == "PIN"):
-                valor_tora = 150.40
+                    return 150.40
             elif(tipoMadeira == "PER"):
-                valor_tora = 170.20
+                return 170.20
             elif(tipoMadeira == "MOG"):
-                valor_tora = 190.90
+                return 190.90
             elif(tipoMadeira == "IPE"):
-                valor_tora = 210.10
+                return 210.10
             else:
-                valor_tora = 220.70
-        break
-    return 
+                return 220.70
 
 
-
+# Função: qtd_toras()
 def qtd_toras():
-    global num_toras
-    global desconto
+#    Pergunta a quantidade de toras desejada e retorna a quantidade e o valor do desconto.
     while True:
+
+#    Usa try/except para tratar erros de entrada.
         try:
             num_toras = int(input("Entre com a quantidade de toras (m³) desejado: "))
             
@@ -50,22 +45,23 @@ def qtd_toras():
                 print("Informe um valor positivo!")
                 continue
 
+            # Define desconto conforme a faixa
             if(num_toras < 100):
-                desconto = (0/100)
+                desconto = 0/100
             elif(num_toras < 500):
-                desconto = (4/100)
+                desconto = 4/100
             elif(num_toras < 1000):
-                desconto = (9/100)
+                desconto = 9/100
             else:
-                desconto = (16/100)
+                desconto = 16/100
 
             return num_toras, desconto
 
         except ValueError:
-            print("Digite um valor numerico!")
+            print("Digite um valor positivo!")
 
 
-
+# Função: transporte()
 def transporte():
     while True:
         tipo_transporte = input("\nEntre com o Tipo de Transporte desejado\n"
@@ -74,24 +70,30 @@ def transporte():
         "3 - Transporte Hidroviário - R$ 2500.00\n>>").upper().strip()
              
         if(tipo_transporte == "1"):
-            valor_transporte = 1000
+            return 1000
         elif(tipo_transporte == "2"):
-            valor_transporte = 2000
+            return 2000
         elif(tipo_transporte == "3"):
-            valor_transporte = 2500
+            return 2500
         else:
             print("Escolha inválida!\n")
-            continue
-      
-        total = ((valor_tora * num_toras)*(1-desconto)) + valor_transporte
 
-        res = print(f"{total:.2f}")
-        break
+     
+# Código principal (main)
+try:
+    # Chama as funções e recebe os valores retornados
+    valor_tora = escolha_tipo()
+    qtd, desconto = qtd_toras()
+    valor_transporte = transporte()
 
-    return res
+    # Calcula o total com desconto aplicado e transporte incluso
+    total = ((valor_tora * qtd) * (1 - desconto)) + valor_transporte
 
+    # Exibe o resultado final
+    print(f"Total: R$ {total:.2f}")
 
-escolha_tipo()
-qtd_toras()
-transporte()
+except Exception as e:
+    # [EXIGÊNCIA DE CÓDIGO 6 de 7]
+    print(f"Ocorreu um erro inesperado: {e}")
+
 
