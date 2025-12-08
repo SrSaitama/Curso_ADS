@@ -13,14 +13,12 @@ public class Cofrinho {
 	}	
 	public void remover(Moeda m) {
 		listaMoedas.remove(m);
-		
 	}	
 	
 	public void listagemMoedas() {
 		for(Moeda m : listaMoedas) {
 			m.info();
 		}
-		
 	}	
 	
 	public void totalConvertido() {
@@ -28,6 +26,6 @@ public class Cofrinho {
 		for(Moeda m : listaMoedas) {
 			total += m.converter();
 		}
-		System.out.println("O totsl convertido para real: " + total);
+		System.out.println("O total convertido para real: " + total);
 	}
 }

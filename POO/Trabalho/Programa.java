@@ -37,9 +37,11 @@ public class Programa {
 							double valor = sc.nextDouble();
 							
 							if (valor <= 0) { 
-								System.out.print("Valor inválido"); }
-							else { 
+								System.out.print("Valor inválido");
+                continue;
+              } else {
 								c.adicionar(new Dolar(valor));
+                continue;
 							}
 							
 							
@@ -48,9 +50,11 @@ public class Programa {
 							double valor = sc.nextDouble();
 							
 							if (valor <= 0) { 
-								System.out.print("Valor inválido"); }
-							else { 
+								System.out.print("Valor inválido"); 
+                continue;
+              } else { 
 								c.adicionar(new Euro(valor));
+                continue;
 							}
 							
 						}if(e1==3) {
@@ -58,12 +62,15 @@ public class Programa {
 							double valor = sc.nextDouble();
 							
 							if (valor <= 0) { 
-								System.out.print("Valor inválido"); }
-							else { 
+								System.out.print("Valor inválido"); 
+                continue;
+              } else { 
 								c.adicionar(new Real(valor));
+                continue;
 							}
 						}else {
 							System.out.println("Opção inexistente!");
+              continue;
 						}
 							
 					//REMOVER MOEDA:
@@ -80,44 +87,41 @@ public class Programa {
 
 						if(e2==1) {
 							c.remover(new Dolar(remoValor));									
+              continue;
 						}if(e2==2) {
 							c.remover(new Euro(remoValor));			
+              continue;
 						}if(e2==3) {
 							c.remover(new Real(remoValor));
-							
+						  continue;
 						}else {
 							System.out.println("Opção inexistente!");			
-						
-						break;
+              continue;
 						}
 						
 					//LISTAR AS MOEDAS:
 					case 3:
 						c.listagemMoedas();
-						break;
+						continue;
 						
 					//CONVERTER AS MOEDAS PARA REAL:
 					case 4:
-						//System.out.printf("O total em reais: ", c.totalConvertido());
+						c.totalConvertido();
 						break;
 						
 					//SAIR DO SISTEMA:
-					case 0:
+					default:
+            System.out.println("Uai");
 						menu = false;
 						
-						break;
-				
+            throw new Exception("Algo deu errado!");
+        }
+			}
+      catch(Exception e) {
+					System.out.printf("Erro: " + e.getMessage());
+
+          return;
 				}
-				
-				
-				
-				
-				
-				
-			}catch(Exception e) {
-				
-				}
-			
 		}
 		
 		
