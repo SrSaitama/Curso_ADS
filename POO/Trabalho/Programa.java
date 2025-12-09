@@ -10,8 +10,6 @@ public class Programa {
 		boolean menu = true;
 
 		while (true) {
-
-			try {
 				// MENU PRINCIPAL:
 				System.out.println("-----COFRINHO-----\n" 
 									+ "1 - Adicionar moeda\n" 
@@ -19,12 +17,14 @@ public class Programa {
 									+ "3 - Listar moedas\n" 
 									+ "4 - Calcular total convertido para Real\n" 
 									+ "0 - Sair");
-				int opc = sc.nextInt();
+        System.out.println("Digite um número: ");
+				String opc = sc.nextLine();
 
+			try {
 				switch (opc) {
 
 				// ADICIONAR MOEDA:
-				case 1:
+				case "1":
 					System.out.println("Escolha a moeda:\n" 
 										+ "1 - Dólar\n" 
 										+ "2 - Euro\n" 
@@ -74,7 +74,7 @@ public class Programa {
 					}
 
 					// REMOVER MOEDA:
-				case 2:
+				case "2":
 					System.out.println("Escolha a moeda para remover:\n" 
 										+ "1 - Dólar\n" 
 										+ "2 - Euro\n" 
@@ -101,28 +101,28 @@ public class Programa {
 					}
 
 					// LISTAR AS MOEDAS:
-				case 3:
+				case "3":
 					c.listagemMoedas();
 					continue;
 
 				// CONVERTER AS MOEDAS PARA REAL:
-				case 4:
+				case "4":
 					c.totalConvertido();
 					break;
 
 				// SAIR DO SISTEMA:
-				case 0:
+				case "0":
 					System.out.println("Saindo..");
 					menu = false;
-					break;
+					return;
 					
 				default:
 					throw new Exception("Opção invalida!");
 				}
 			} catch (Exception e) {
 				//System.out.printf("Erro: " + e.getMessage());
-				System.out.printf("Algo deu errado!");
-				return;
+				System.out.println("Algo deu errado!");
+        continue;
 			}
 		}
 
