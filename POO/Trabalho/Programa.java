@@ -17,8 +17,8 @@ public class Programa {
 									+ "3 - Listar moedas\n" 
 									+ "4 - Calcular total convertido para Real\n" 
 									+ "0 - Sair");
-        System.out.println("Digite um número: ");
-				String opc = sc.nextLine();
+        System.out.print("Digite um número: ");
+				String opc = sc.next();
 
 			try {
 				switch (opc) {
@@ -120,7 +120,6 @@ public class Programa {
 					throw new Exception("Opção invalida!");
 				}
 			} catch (Exception e) {
-				//System.out.printf("Erro: " + e.getMessage());
 				System.out.println("Algo deu errado!");
         continue;
 			}
