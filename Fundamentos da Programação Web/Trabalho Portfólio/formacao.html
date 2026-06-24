@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio Online</title>
+    <link rel="stylesheet" href="src/styles/styles.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Portfólio de Bruno</div>
+            <!--Criação da lista de botões na barra de navegação-->
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Sobre</a></li>
+                <li><a href="formacao.html">Formação</a></li>
+                <li><a href="portfolio.html">Portfólio</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+            <!--Criação do botão de tema-->
+            <button id="btn-tema" class="btn-tema">Tema</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="formacao">
+            <h1>Formação Acadêmica</h1>
+
+            <h2>Educação Formal</h2>
+            <!--Criação de uma tabela para listar minha formação-->
+            <table class="tabela-formacao">
+                <thead>
+                    <tr>
+                        <th>Curso / Graduação</th>
+                        <th>Instituição</th>
+                        <th>Período / Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Análise e Desenvolvimento de Sistemas</strong></td>
+                        <td>Centro Universitário Internacional UNINTER</td>
+                        <td>2025/2026 - Cursando</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Técnico em Administração de Banco de Dados</strong></td>
+                        <td>Senac</td>
+                        <td>Concluído</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ensino Médio</strong></td>
+                        <td>Escola Estadual EOB</td>
+                        <td>Concluído</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Cursos / Certificações</h2>
+            <ul class="lista-estilizada">
+                <li><strong>Técnico em Administração de Banco de Dados</strong> - Senac - 193h</li>
+                <li><strong>Linux</strong> - Curso em Video - 40h</li>
+            </ul>
+
+            <h2>Idiomas</h2>
+            <ul class="lista-estilizada">
+                <li>Português - Nativo</li>
+                <li>Ingles - Iniciante</li>
+            </ul>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 UNINTER. Bruno Eliakim. Todos os direitos reservados</p>
+    </footer>
+    <script src="src/javascript/tema.js"></script>
+</body>
+
+</html>
