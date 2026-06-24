@@ -18,4 +18,8 @@ public class Euro extends Moeda{
 		return total;
 	}
 
+  @Override
+	public double valor() {
+		return valor;
+	}
 }

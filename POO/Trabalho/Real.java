@@ -16,5 +16,9 @@ public class Real extends Moeda{
 	public double converter() {
 		return valor;
 	}
+  @Override
+	public double valor() {
+		return valor;
+	}
 
 }
