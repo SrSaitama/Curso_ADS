@@ -16,14 +16,11 @@ document.addEventListener('DOMContentLoaded', function(){
         const campoEmail = document.getElementById('email');
         const campoMensagem = document.getElementById('mensagem');
 
-  
-
         //Recebe os valores digitados
         const nome = campoNome.value.trim();
         const email = campoEmail.value.trim();
         const mensagem = campoMensagem.value.trim();
-
-    
+ 
         //Verifica se tem campos vazios
         if(nome === "" || email === "" || mensagem === ""){
             alert("Por favor, preencha todos os campos!")
