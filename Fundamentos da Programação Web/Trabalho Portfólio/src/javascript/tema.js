@@ -1,4 +1,4 @@
-
+//Garante que o script só vai iniciar quando a pagina terminar de carregar
 document.addEventListener('DOMContentLoaded', function(){
 
     const butTema = document.getElementById('btn-tema');
