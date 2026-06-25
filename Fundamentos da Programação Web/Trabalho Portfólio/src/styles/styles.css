@@ -4,26 +4,26 @@ CONFIGURAÇÃO DOS ESTILOS DE TEMA
 
 /* Cores padrão para o Tema Claro */
 :root {
-    --bg-principal: #f4f7f6;     /* Cor do fundo geral da página */
-    --bg-container: #ffffff;     /* Cor de fundo do bloco central (conteúdo) */
-    --bg-card: #fdfdfd;          /* Cor de fundo dos cartões de projetos e inputs */
-    --texto-principal: #333333;  /* Cor dos textos e parágrafos */
-    --texto-titulo: #1a252f;     /* Cor dos títulos h1 e h2 */
-    --borda-cor: #e0e0e0;        /* Cor das linhas divisórias e bordas */
-    --link-cor: #bdc3c7;         /* Cor padrão dos links do menu antes do hover */
-    --cor-destaque: #00bcd4;     /* Ciano clássico do seu projeto para detalhes */
+    --bg-principal: #f4f7f6;     /* Cor geral da página*/
+    --bg-container: #ffffff;     /* Cor da caixa de conteúdo*/
+    --bg-card: #fdfdfd;          /* Cor de fundo dos cards e inputs*/
+    --texto-principal: #333333;  /* Cor dos textos e parágrafos*/
+    --texto-titulo: #1a252f;     /* Cor de h1 e h2*/
+    --borda-cor: #e0e0e0;        /* Cor das linhas divisórias e bordas*/
+    --link-cor: #bdc3c7;         /* Cor padrão dos links do menu antes do hover*/
+    --cor-destaque: #00bcd4;     /* Cor para detalhes*/
 }
 
-/* Cores que substituem as de cima quando o Modo Escuro está ativo */
+/* Cores quando o Modo Escuro está ativo */
 body.dark-theme {
-    --bg-principal: #121212;     /* Fundo geral quase preto */
-    --bg-container: #1a1a1a;     /* Bloco central cinza escuro */
-    --bg-card: #2d2d2d;          /* Cards e inputs em um cinza um pouco mais claro */
-    --texto-principal: #e0e0e0;  /* Texto claro para não cansar as vistas */
-    --texto-titulo: #3498db;     /* Títulos ganham um tom azul destacado */
-    --borda-cor: #333333;        /* Bordas escuras e discretas */
-    --link-cor: #a0a0a0;         /* Links do menu em cinza médio */
-    --cor-destaque: #00bcd4;     /* Mantém o ciano para manter a identidade */
+    --bg-principal: #121212;     
+    --bg-container: #1a1a1a;     
+    --bg-card: #2d2d2d;         
+    --texto-principal: #e0e0e0;  
+    --texto-titulo: #3498db;     
+    --borda-cor: #333333;        
+    --link-cor: #a0a0a0;         
+    --cor-destaque: #00bcd4;     
 }
 
 /*-------------------------------
@@ -45,7 +45,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    /*transition: background-color o.3s, color 0.3s;*/
+    transition: background-color o.3s, color 0.3s;
 }
 
 /*Títulos, subtítulos e parágrafos*/
@@ -80,7 +80,7 @@ ESTRUTURA DO CONTEÚDO DAS PÁGINAS
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0px 4px 15px rgb(0, 0, 0, 0.05);
-    /*transition: background-color 0.3s;*/
+    transition: background-color 0.3s;
 }
 
 
@@ -120,7 +120,7 @@ BARRA DE NAVEGAÇÃO ENTRE AS PÁGINAS
     font-size: 1;
     padding: 8px 12px;
     border-radius: 4px;
-    /*transition: all 0.3s ease;*/
+    transition: all 0.3s ease;
 }
 
 /*Efeito de passar o mouse pela barra de navegação*/
@@ -138,7 +138,7 @@ BARRA DE NAVEGAÇÃO ENTRE AS PÁGINAS
     padding: 8px 12px;
     border-radius: 20px;
     font-weight: bold;
-    /*transition: background 0.3s;*/
+    transition: background 0.3s;
 }
 
 .btn-tema:hover {
@@ -154,7 +154,7 @@ FOTO E APRESENTAÇÃO - SOBRE MIM
     gap: 30px;
     align-items: flex-start;
     margin-top: 20px;
-    /*flex-wrap: wrap; /* Importante: joga o texto para baixo da foto em telas de celular */
+    flex-wrap: wrap; /*Server para quebra de linhas no celular, layout responsivo*/
 }
 
 .foto-perfil {
